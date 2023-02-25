@@ -43,6 +43,7 @@ export default function Example() {
   const [selected, setSelected] = useState<Font|undefined>(fonts[0])
   const [query, setQuery] = useState<string>("")
   const [wordCounter, setWordCounter] = useState<number>(0)
+  const [price, setPrice] = useState<number>(0)
 
   const filteredfonts =
     query === ''
@@ -55,8 +56,7 @@ export default function Example() {
         )
 
     useEffect(() => {
-        console.log(wordCounter)
-        console.log(calculatePrice(wordCounter))
+        setPrice(calculatePrice(wordCounter))
     }, [wordCounter])
     
 
@@ -138,9 +138,11 @@ export default function Example() {
         <div>
             <TextInput setWordCounter={setWordCounter}/>
         </div>
-        <div>
-            Vaše předpokládaná cena: {}
+        {wordCounter > 0 &&
+        <div className="text-white">
+            Vaše předpokládaná cena je: {price} Kč
         </div>
+        }
     </>
   )
 }
