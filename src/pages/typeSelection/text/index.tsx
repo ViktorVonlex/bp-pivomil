@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import TextInput from "~/components/TextInput";
+import Footer from '~/components/Footer';
 
 type Font = {
     id: number,
@@ -143,6 +144,7 @@ export default function Example() {
             Vaše předpokládaná cena je: {price} Kč
         </div>
         }
+        <Footer prevPage="/typeSelection" nextPage="/typeSelection/text/finalize"/>
     </>
   )
 }
