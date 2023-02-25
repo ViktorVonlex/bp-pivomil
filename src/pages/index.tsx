@@ -11,8 +11,6 @@ type Props = {
 const Home: NextPage<Props> = ({data}) => {
 
   const [option1, setOption1] = useState<string>("")
-
-
   const [nextPage, setNextPage] = useState<string>("/typeSelection")
 
   return (

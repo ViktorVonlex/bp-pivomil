@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .pageHeader {
+        @apply text-2xl text-center tracking-tight text-white sm:text-[5rem]
+    }
+}
