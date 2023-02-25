@@ -1,6 +1,7 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import TextInput from "~/components/TextInput";
 
 type Font = {
     id: number,
@@ -16,9 +17,32 @@ const fonts = [
   { id: 6, name: 'Amatic SC bold' },
 ]
 
+function calculatePrice(wordCounter:number){
+    console.log(wordCounter)
+    if(wordCounter === 1) {
+        return 99
+    } else
+    
+    if (wordCounter > 1 && wordCounter <= 3) {
+        return 178
+    } else
+    if(wordCounter > 3 && wordCounter <= 6){
+        return 299
+    } else
+    if(wordCounter >= 7 && wordCounter <= 10){
+        return 299
+    } else
+    if(wordCounter > 10){
+        return 599
+    }
+
+    else return 0
+}
+
 export default function Example() {
   const [selected, setSelected] = useState<Font|undefined>(fonts[0])
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState<string>("")
+  const [wordCounter, setWordCounter] = useState<number>(0)
 
   const filteredfonts =
     query === ''
@@ -30,12 +54,19 @@ export default function Example() {
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         )
 
+    useEffect(() => {
+        console.log(wordCounter)
+        console.log(calculatePrice(wordCounter))
+    }, [wordCounter])
+    
+
   return (
-    <>
-        <h2 className="pageHeader">
+    <>  
+        <div>
+            <h2 className="pageHeader">
             Vyberte písmo
         </h2>
-        <div className="w-72 mt-[-24px]">
+        <div className="w-72 z-10 mt-3">
         <Combobox value={selected} onChange={setSelected}>
             <div className="relative mt-1">
             <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
@@ -58,7 +89,7 @@ export default function Example() {
                 leaveTo="opacity-0"
                 afterLeave={() => setQuery('')}
             >
-                <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {filteredfonts.length === 0 && query !== '' ? (
                     <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                     Nothing found.
@@ -101,6 +132,14 @@ export default function Example() {
             </Transition>
             </div>
         </Combobox>
+        </div>
+        </div>
+        
+        <div>
+            <TextInput setWordCounter={setWordCounter}/>
+        </div>
+        <div>
+            Vaše předpokládaná cena: {}
         </div>
     </>
   )
