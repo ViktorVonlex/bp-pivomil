@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useState } from 'react'
+import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 type Props = {
     items: Item[],
     selected: Item,
-    setSelected: ()=> void
+    setSelected: Dispatch<SetStateAction<Item | undefined>>
 } 
 
 type Item = {
