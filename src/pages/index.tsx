@@ -39,7 +39,7 @@ export function getServerSideProps() {
   
   return {
     props: {data: {
-      options: ["Sklenici", "Půllitr", "Karafu", "Lahev", "Džbán"]
+      options: ["Půllitr", "Třetinku", "Sklenici", "Karafu", "Lahev", "Džbán"]
     }}, // will be passed to the page component as props
   }
 }
