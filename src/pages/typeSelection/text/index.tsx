@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react'
 import TextInput from "~/components/TextInput";
 import Footer from '~/components/Footer';
 import Dropdown from '~/components/Dropdown';
-
-type Item = {
-    id: number,
-    name: string,
-    price? : number
-}
+import { type Item } from '~/util/types';
 
 const fonts = [
   { id: 1, name: 'Times New Roman' },
@@ -70,9 +65,9 @@ export default function Example() {
             <TextInput setWordCounter={setWordCounter}/>
         </div>
         {wordCounter > 0 &&
-        <div className="text-white">
+        <p className="text-white">
             Vaše předpokládaná cena je: {price} Kč
-        </div>
+        </p>
         }
         <Footer prevPage="/typeSelection" nextPage="/typeSelection/text/finalize"/>
     </>
