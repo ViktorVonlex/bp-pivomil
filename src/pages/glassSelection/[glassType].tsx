@@ -4,8 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type GetStaticPropsContext, type NextPage } from "next";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "~/components/Dropdown";
 import Footer from "~/components/Footer";
 import { type Item } from "~/util/types";
@@ -17,8 +16,15 @@ type Props = {
 
 const Glass: NextPage<Props> = ({res}) => {
 
-  const [nextPage, setNextPage] = useState<string>("/typeSelection")
+  const [nextPage, setNextPage] = useState<string>("./typeSelection")
   const [selected, setSelected] = useState<Item|undefined>(res[0])
+
+  useEffect(() => {
+    if(selected !== undefined) {
+        sessionStorage.setItem("selected", selected?.name)
+    }
+    
+  }, [selected])
 
   return (
     <>

@@ -1,8 +1,6 @@
 import { type NextPage } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useState } from "react";
-import Footer from "~/components/Footer";
 
 type Props = {
   data: {
@@ -13,8 +11,6 @@ type Props = {
 const Home: NextPage<Props> = ({data}) => {
 
   const [option1, setOption1] = useState<string>("")
-  const [nextPage, setNextPage] = useState<string>("/typeSelection")
-  const router = useRouter();
 
   return (
     <>
@@ -35,7 +31,6 @@ const Home: NextPage<Props> = ({data}) => {
         }
       
       </div>
-      <Footer prevPage="/" nextPage={nextPage} />
     </>
   );
 };
