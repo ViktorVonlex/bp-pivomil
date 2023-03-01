@@ -19,7 +19,7 @@ const Home: NextPage<Props> = ({data}) => {
   return (
     <>
       <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
-        Chci pískovat na:
+        Vyberte typ skla
       </h2>
       <div className="grid grid-rows-3 grid-flow-row grid-cols-2 gap-4 md:gap-8">
         {
@@ -46,7 +46,7 @@ export function getServerSideProps() {
   
   return {
     props: {data: {
-      options: ["Půllitr", "Třetinku", "Sklenici", "Karafu", "Lahev", "Džbán"]
+      options: ["Půllitr", "Třetinka", "Sklenice", "Karafa", "Lahev", "Džbán"]
     }}, // will be passed to the page component as props
   }
 }

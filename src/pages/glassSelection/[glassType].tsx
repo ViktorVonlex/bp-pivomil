@@ -1,10 +1,15 @@
-import { type GetServerSidePropsContext, type NextPage } from "next";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { type GetStaticPropsContext, type NextPage } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Dropdown from "~/components/Dropdown";
 import Footer from "~/components/Footer";
 import { type Item } from "~/util/types";
+import prisma from '~/util/prisma';
 
 type Props = {
   res:  Item[]
@@ -15,13 +20,9 @@ const Glass: NextPage<Props> = ({res}) => {
   const [nextPage, setNextPage] = useState<string>("/typeSelection")
   const [selected, setSelected] = useState<Item|undefined>(res[0])
 
-  const router = useRouter()
-  const {glassType} = router.query;
-  console.log(selected)
-
   return (
     <>
-        <h2 className="pageHeader">
+        <h2 className="pageHeader mb-[-1.5rem]">
             Vyberte pískované sklo
         </h2>
         <div className="w-72 z-10 mt-3">
@@ -34,9 +35,11 @@ const Glass: NextPage<Props> = ({res}) => {
             <div className="w-fit flex justify-center items-center bg-black pr-5 rounded-md">
                 {
                     selected?.url &&
-                    <Image src={selected.url} width={100} height={200} alt={selected.name} className="mr-5 rounded-l-md"/>
+                    <div className="w-28 h-36 relative">
+                        <Image src={selected.url} fill alt={selected.name} className="rounded-l-md"/>
+                    </div>
                 }
-                <div>
+                <div className="ml-5">
                     <p className="text-white">Cena: {selected?.price} Kč</p>
                     <p className="text-white">Bez DPH: {selected?.priceWOVat} Kč</p>
                 </div>
@@ -50,27 +53,41 @@ const Glass: NextPage<Props> = ({res}) => {
 
 export default Glass;
 
-export const getServerSideProps = ({params}:GetServerSidePropsContext) => {
-
-    const data = {
-        půllitr: [{name: "Džbánek Aspen", price: 89}, {name: "Džbánek Kugel", price: 109}, {name: "Džbánek Prag", price: 99}],
-        třetinka: [{name: "Džbánek Aspen", price: 79}, {name: "Džbánek Kugel", price: 99}, {name: "Džbánek Prag - 0,3l", price: 89, priceWOVat: 65,url: "https://www.pivomil.cz/fotky53/fotos/gen320/gen__vyr_1007prag0.jpg"}]
+export function getStaticPaths() {
+    return {
+      paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }],
+      fallback: false, // can also be true or 'blocking'
     }
+}
 
+export const getStaticProps = async ({params}:GetStaticPropsContext) => {
+    
     let res;
 
-    if (params?.glassType === "třetinku") {
-        res = data.třetinka
-    }
+    //@ts-ignore
+    const glassType:string = params?.glassType;
 
-    if(params?.glassType === "půllitr") {
-        res = data.půllitr
-    }
+    try {
+        const selectedTypeProducts = await prisma.product.findMany({
+            where: {
+                type: glassType
+              }
+        });
+        
+        console.log(selectedTypeProducts)
+        res = selectedTypeProducts
+      } catch (err) {
+        console.log("yikes")
+      }
   
     return {
-      props: {res}, // will be passed to the page component as props
+      props: {
+            res
+        },
+        revalidate: 43200
+    
     }
-  }
+}
 
 
 
