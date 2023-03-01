@@ -3,15 +3,7 @@ import TextInput from "~/components/TextInput";
 import Footer from '~/components/Footer';
 import Dropdown from '~/components/Dropdown';
 import { type Item } from '~/util/types';
-
-const fonts = [
-  { id: 1, name: 'Times New Roman' },
-  { id: 2, name: 'Alfa Frivolity Bold ' },
-  { id: 3, name: 'Amazone 0123456789' },
-  { id: 4, name: 'Amarante normal' },
-  { id: 5, name: 'Arial Black Bold' },
-  { id: 6, name: 'Amatic SC bold' },
-]
+import { fonts } from '~/util/fonts';
 
 function calculatePrice(wordCounter:number){
     console.log(wordCounter)
@@ -69,7 +61,7 @@ export default function Example() {
             Vaše předpokládaná cena je: {price} Kč
         </p>
         }
-        <Footer prevPage="/typeSelection" nextPage="/typeSelection/text/finalize"/>
+        <Footer prevPage="/typeSelection" nextPage="./finalize"/>
     </>
   )
 }
