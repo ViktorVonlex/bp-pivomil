@@ -4,12 +4,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type GetStaticPropsContext, type NextPage } from "next";
 import Image from "next/image";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "~/components/Dropdown";
 import Footer from "~/components/Footer";
 import { type Item } from "~/util/types";
 import prisma from '~/util/prisma';
-import Loading from "./loading";
 
 type Props = {
   res: Item[]
@@ -18,6 +17,7 @@ type Props = {
 const Glass: NextPage<Props> = ({ res }) => {
 
   const [selected, setSelected] = useState<Item | undefined>(res[0])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     if (selected !== undefined) {
@@ -40,15 +40,13 @@ const Glass: NextPage<Props> = ({ res }) => {
       </div>
       <div className="w-72 flex justify-center">
         <div className="w-fit flex justify-center items-center bg-black pr-5 rounded-md">
-          {
-            selected?.url &&
-            <div className="w-28 h-36 relative">
-              <Suspense fallback={<Loading />}>
-                <Image src={selected.url} fill alt={selected.name} className="rounded-l-md" />
-              </Suspense>
-
-            </div>
-          }
+          <div className="w-28 h-36 relative">
+            {
+              selected?.url && loading === false
+                ? <Image src={selected.url} fill alt={selected.name} className="rounded-l-md" />
+                : <Image src={"/blurred-bg.jpg"} alt="Nacitani" onLoadingComplete={() => setLoading(false)} fill className="rounded-l-md" />
+            }
+          </div>
           <div className="ml-5">
             <p className="text-white">Cena: {selected?.price} Kč</p>
             <p className="text-white">Bez DPH: {selected?.priceWOVat} Kč</p>
