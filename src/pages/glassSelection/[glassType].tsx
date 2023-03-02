@@ -4,11 +4,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type GetStaticPropsContext, type NextPage } from "next";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Dropdown from "~/components/Dropdown";
 import Footer from "~/components/Footer";
 import { type Item } from "~/util/types";
 import prisma from '~/util/prisma';
+import Loading from "./loading";
 
 type Props = {
   res: Item[]
@@ -42,7 +43,10 @@ const Glass: NextPage<Props> = ({ res }) => {
           {
             selected?.url &&
             <div className="w-28 h-36 relative">
-              <Image src={selected.url} fill alt={selected.name} className="rounded-l-md" />
+              <Suspense fallback={<Loading />}>
+                <Image src={selected.url} fill alt={selected.name} className="rounded-l-md" />
+              </Suspense>
+
             </div>
           }
           <div className="ml-5">
