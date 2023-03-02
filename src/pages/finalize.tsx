@@ -7,7 +7,7 @@ const Finalize: NextPage = () => {
     const [selectedProduct, setSelectedProduct] = useState<Item>()
 
     useEffect(() => {
-        const selectedProductString = sessionStorage.getItem("selectedProduct")
+        const selectedProductString = localStorage.getItem("selectedProduct")
         if (selectedProductString !== null) {
             const selectedProductObject = JSON.parse(selectedProductString) as Item
             setSelectedProduct(selectedProductObject)

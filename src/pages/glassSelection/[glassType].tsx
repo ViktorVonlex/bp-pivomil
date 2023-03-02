@@ -9,6 +9,7 @@ import Dropdown from "~/components/Dropdown";
 import Footer from "~/components/Footer";
 import { type Item } from "~/util/types";
 import prisma from '~/util/prisma';
+import ImgHelper from "~/components/ImgHelper";
 
 type Props = {
   res: Item[]
@@ -22,7 +23,8 @@ const Glass: NextPage<Props> = ({ res }) => {
   useEffect(() => {
     if (selected !== undefined) {
       const selectedString = JSON.stringify(selected)
-      sessionStorage.setItem("selectedProduct", selectedString)
+      localStorage.setItem("selectedProduct", selectedString)
+      setLoading(true)
     }
 
   }, [selected])
@@ -42,9 +44,17 @@ const Glass: NextPage<Props> = ({ res }) => {
         <div className="w-fit flex justify-center items-center bg-black pr-5 rounded-md">
           <div className="w-28 h-36 relative">
             {
-              selected?.url && loading === false
-                ? <Image src={selected.url} fill alt={selected.name} className="rounded-l-md" />
-                : <Image src={"/blurred-bg.jpg"} alt="Nacitani" onLoadingComplete={() => setLoading(false)} fill className="rounded-l-md" />
+              loading === true && selected?.url !== undefined
+              ? <>
+                  <Image src={"/blurred-bg.jpg"} alt="Nacitani" fill className="rounded-l-md" />
+                  <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading}/>
+                </>
+                
+              : <>
+                {selected?.url !== undefined &&
+                  <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading}/> 
+                }
+                </> 
             }
           </div>
           <div className="ml-5">
