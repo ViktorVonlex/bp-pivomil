@@ -45,6 +45,7 @@ const Text: NextPage = () => {
 
     useEffect(() => {
         setPrice(calculatePrice(wordCounter))
+        localStorage.removeItem("selectedPicture")
         console.log(selected)
     }, [wordCounter, selected])
 
