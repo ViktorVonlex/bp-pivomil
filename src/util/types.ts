@@ -6,3 +6,8 @@ export type Item = {
     priceWOVat? : number,
     url? : string
 }
+
+export type SelectedFont = {
+    selectedFont: Item,
+    price: number
+}

@@ -5,13 +5,13 @@ import Dropdown from '~/components/Dropdown';
 import { type Item } from '~/util/types';
 import { fonts } from '~/util/fonts';
 import Link from 'next/link';
+import { type NextPage } from 'next';
 
 function calculatePrice(wordCounter: number) {
     console.log(wordCounter)
     if (wordCounter === 1) {
         return 99
     } else
-
         if (wordCounter > 1 && wordCounter <= 3) {
             return 178
         } else
@@ -28,7 +28,16 @@ function calculatePrice(wordCounter: number) {
                     else return 0
 }
 
-export default function Example() {
+function saveSelectedFontAndStuff(selected:Item, price:number) {
+    const obj = {
+        selectedFont: selected,
+        price: price
+    }
+    const selectedString = JSON.stringify(obj)
+    localStorage.setItem("selectedFont", selectedString)
+}
+
+const Text: NextPage = () => {
     const [selected, setSelected] = useState<Item | undefined>(fonts[0])
     const [wordCounter, setWordCounter] = useState<number>(0)
     const [price, setPrice] = useState<number>(0)
@@ -62,10 +71,15 @@ export default function Example() {
             </div>
             {wordCounter > 0 &&
                 <p className="text-white">
-                    Vaše předpokládaná cena je: {price} Kč
+                    Vaše předpokládaná cena: {price} Kč
                 </p>
             }
+            <Link href="/finalize">
+                <button onClick={()=>saveSelectedFontAndStuff(selected as Item, price)}>SAdasd</button>
+            </Link>
             <Footer prevPage="/typeSelection" nextPage="/finalize" />
         </>
     )
 }
+
+export default Text
