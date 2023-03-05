@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type GetStaticPropsContext, type NextPage } from "next";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -82,8 +78,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 
   let res;
 
-  //@ts-ignore
-  const glassType: string = params?.glassType;
+  const glassType: string = params?.glassType as string;
 
   try {
     const selectedTypeProducts = await prisma.product.findMany({

@@ -7,8 +7,7 @@ function getWordCount(str:string) {
 }
 
 type Props = {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    setWordCounter : Function
+    setWordCounter : (value: number) => void
 }
 
 const TextInput = ({setWordCounter}: Props) => {
