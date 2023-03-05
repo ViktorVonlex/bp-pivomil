@@ -6,6 +6,10 @@ function getWordCount(str:string) {
     }).length;
 }
 
+function saveText(str:string) {
+  localStorage.setItem("text", str)
+}
+
 type Props = {
     setWordCounter : (value: number) => void
 }
@@ -27,6 +31,7 @@ const TextInput = ({setWordCounter}: Props) => {
           placeholder="Váš text zde"
           onChange={(event) => {
             const wordCount = getWordCount(event.target.value)
+            saveText(event.target.value)
             setWordCounter(wordCount)
           }}
         />

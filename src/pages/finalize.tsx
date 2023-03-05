@@ -21,13 +21,14 @@ const Finalize: NextPage = () => {
                 helperPrice = helperPrice + selectedProductObject.price
             }
         }
-        if (selectedFontString !== null) {
-            const selectedFontObject = JSON.parse(selectedFontString) as SelectedFont
-            setSelectedFont(selectedFontObject)
-            helperPrice = helperPrice + selectedFontObject.price
-        }
-        if (selectedService !== null) {
+        
+        if (selectedService === "text") {
             setSelectedService(selectedService)
+            if (selectedFontString !== null) {
+                const selectedFontObject = JSON.parse(selectedFontString) as SelectedFont
+                setSelectedFont(selectedFontObject)
+                helperPrice = helperPrice + selectedFontObject.price
+            }
         }
         setFinalPrice(helperPrice)
     }, [])
