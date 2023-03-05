@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { type NextPage } from "next";
 import { useEffect, useState } from "react";
 import { type SelectedFont, type Item } from "~/util/types";
