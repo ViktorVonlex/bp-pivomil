@@ -27,7 +27,7 @@ const TextInput = ({setWordCounter}: Props) => {
           type="text"
           name="text"
           id="text"
-          className="w-full rounded-lg border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 font-[${}]"
+          className="w-full rounded-lg border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
           placeholder="Váš text zde"
           onChange={(event) => {
             const wordCount = getWordCount(event.target.value)
