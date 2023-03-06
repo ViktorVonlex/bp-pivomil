@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { type SelectedFont, type Item } from "~/util/types";
 

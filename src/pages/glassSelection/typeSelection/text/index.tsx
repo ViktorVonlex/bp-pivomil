@@ -78,9 +78,11 @@ const Text: NextPage = () => {
                 <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
                     Predchozi
                 </button>
-                <Link href={"/finalize"} className="text-center text-white flex flex-col justify-center">
-                    <button onClick={()=>saveSelectedFontAndStuff(selected as Item, price)}>Dalsi</button>
-                </Link>
+                {wordCounter > 0 &&
+                    <Link href={"/finalize"} className="text-center text-white flex flex-col justify-center">
+                        <button onClick={()=>saveSelectedFontAndStuff(selected as Item, price)}>Dalsi</button>
+                    </Link>
+                }
             </div>
         </>
     )
