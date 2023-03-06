@@ -1,6 +1,6 @@
 import { type NextPage } from 'next'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import Footer from '~/components/Footer'
 
 
 const TypeSelection: NextPage = () => {
@@ -26,7 +26,14 @@ const TypeSelection: NextPage = () => {
           <h2 className="text-2xl font-bold" onClick={() => {setService("picture");setNextPage(`./typeSelection/picture`)}}>OBRÁZEK</h2>
         </button>
       </div>
-      <Footer prevPage="/" nextPage={nextPage} />
+      <div className="grid grid-cols-2 gap-10 md:gap-8">
+        <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
+            Predchozi
+        </button>
+        <Link href={nextPage} className="text-center text-white flex flex-col justify-center">
+            Dalsi
+        </Link>
+    </div>
     </>
     
   )

@@ -2,10 +2,10 @@ import { type GetStaticPropsContext, type NextPage } from "next";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Dropdown from "~/components/Dropdown";
-import Footer from "~/components/Footer";
 import { type Item } from "~/util/types";
 import prisma from '~/util/prisma';
 import ImgHelper from "~/components/ImgHelper";
+import Link from "next/link";
 
 type Props = {
   res: Item[]
@@ -60,7 +60,14 @@ const Glass: NextPage<Props> = ({ res }) => {
         </div>
       </div>
 
-      <Footer prevPage="/" nextPage="./typeSelection" />
+      <div className="grid grid-cols-2 gap-10 md:gap-8">
+        <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
+            Predchozi
+        </button>
+        <Link href={"./typeSelection"} className="text-center text-white flex flex-col justify-center">
+            Dalsi
+        </Link>
+    </div>
     </>
   );
 };

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import TextInput from "~/components/TextInput";
-import Footer from '~/components/Footer';
 import Dropdown from '~/components/Dropdown';
 import { type Item } from '~/util/types';
 import { fonts } from '~/util/fonts';
@@ -75,10 +74,14 @@ const Text: NextPage = () => {
                     Vaše předpokládaná cena: {price} Kč
                 </p>
             }
-            <Link href="/finalize">
-                <button onClick={()=>saveSelectedFontAndStuff(selected as Item, price)}>SAdasd</button>
-            </Link>
-            <Footer prevPage="/typeSelection" nextPage="/finalize" />
+            <div className="grid grid-cols-2 gap-10 md:gap-8">
+                <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
+                    Predchozi
+                </button>
+                <Link href={"/finalize"} className="text-center text-white flex flex-col justify-center">
+                    <button onClick={()=>saveSelectedFontAndStuff(selected as Item, price)}>Dalsi</button>
+                </Link>
+            </div>
         </>
     )
 }

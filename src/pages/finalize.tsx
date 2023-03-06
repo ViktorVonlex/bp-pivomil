@@ -1,4 +1,5 @@
 import { type NextPage } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { type SelectedFont, type Item } from "~/util/types";
 
@@ -46,6 +47,12 @@ const Finalize: NextPage = () => {
                 <p className="text-white">Předpokládaná cena: {finalPrice} Kč</p>
                 <p className="text-white">Předpokládaná cena bez daně: {(finalPrice / 1.21).toFixed(0)} Kč</p>
             
+            </div>
+            <div className="grid grid-cols-2 gap-10 md:gap-8">
+                <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
+                    Predchozi
+                </button>
+                <div></div>
             </div>
         </>
     );
