@@ -65,7 +65,7 @@ const Text: NextPage = () => {
                 </div>
                 
                 
-                <div className="w-72 z-10 mt-3 mb-7">
+                <div className="w-72 z-10 mt-3 mb-3">
                     {
                         selected !== undefined &&
                         <Dropdown selected={selected} setSelected={setSelected} items={fonts} />
