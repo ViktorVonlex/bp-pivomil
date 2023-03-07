@@ -27,7 +27,7 @@ const Glass: NextPage<Props> = ({ res }) => {
 
   return (
     <>
-      <h2 className="pageHeader mb-[-1.5rem]">
+      <h2 className="pageHeader mb-[-1.5rem] md:text-5xl">
         Vyberte pískované sklo
       </h2>
       <div className="w-72 z-10 mt-3">

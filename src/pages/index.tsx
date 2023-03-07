@@ -17,7 +17,7 @@ const Home: NextPage<Props> = ({data}) => {
       <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
         Vyberte typ skla
       </h2>
-      <div className="grid grid-rows-3 grid-flow-row grid-cols-2 gap-4 md:gap-8">
+      <div className="grid grid-rows-3 grid-flow-row grid-cols-2 gap-4 md:gap-8 md:grid-cols-3 md:mt-4">
         {
           data.options.map(option =>
           

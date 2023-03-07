@@ -52,23 +52,23 @@ const Text: NextPage = () => {
     return (
         <>
             <div className="flex-row">
-                <div className="flex items-center">
-                    
-                    <h2 className="pageHeader text-center">
-                        Vyberte písmo
-                    </h2>
-                    <div className="w-max flex mx-auto">
-                        <Link target="_blank" href="https://www.pivomil.cz/fotky53/fotov/_ps_614PISMO.pdf" className="rounded-xl mt-1 justify-center items-center bg-white/10 p-3 text-white hover:bg-white/20 active:bg-white/20">
-                            Ukázka zde
-                        </Link>
-                    </div>
-                </div>
-                
-                
-                <div className="w-72 z-10 mt-3 mb-3">
+
+                <h2 className="pageHeader text-center md:text-5xl md:mb-3 mx-auto">
+                    Vyberte písmo
+                </h2>
+
+                <div className="w-72 z-10 mt-3 mb-3 mx-auto md:mb-0 md:w-96">
                     {
                         selected !== undefined &&
-                        <Dropdown selected={selected} setSelected={setSelected} items={fonts} />
+                        <div className='flex items-center'>
+                            <div className="w-max flex mr-6">
+                                <Link target="_blank" href="https://www.pivomil.cz/fotky53/fotov/_ps_614PISMO.pdf" className="rounded-xl mt-1 justify-center items-center bg-white/10 p-3 text-white hover:bg-white/20 active:bg-white/20">
+                                    Ukázka zde
+                                </Link>
+                            </div>
+                            <Dropdown selected={selected} setSelected={setSelected} items={fonts} />
+                        </div>
+                        
                     }
                 </div>
             </div>
