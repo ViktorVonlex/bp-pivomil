@@ -27,7 +27,7 @@ const Glass: NextPage<Props> = ({ res }) => {
 
   return (
     <>
-      <h2 className="pageHeader mb-[-1.5rem] md:text-5xl">
+      <h2 className="pageHeader mb-[-1.5rem] sm:text-5xl">
         Vyberte pískované sklo
       </h2>
       <div className="w-72 z-10 mt-3">
@@ -60,7 +60,7 @@ const Glass: NextPage<Props> = ({ res }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-10 md:gap-8">
+      <div className="grid grid-cols-2 gap-10 sm:gap-8">
         <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
             Predchozi
         </button>

@@ -19,7 +19,7 @@ const TextInput = ({setWordCounter}: Props) => {
   return (
     <>
     <div className="w-72">
-      <label htmlFor="price" className="block pageHeader md:text-5xl md:mb-3">
+      <label htmlFor="price" className="block pageHeader sm:text-5xl sm:mb-3">
         Váš text:
       </label>
       <div className="relative rounded-md mt-2">

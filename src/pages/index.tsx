@@ -29,7 +29,7 @@ const Home: NextPage<Props> = ({data}) => {
           )
         }
       </div>
-      <div className="grid grid-cols-2 gap-10 md:gap-8">
+      <div className="grid grid-cols-2 gap-10 sm:gap-8">
         <div></div>
         {option1 !== "" &&
         <Link href={`/glassSelection/${option1.toLowerCase()}`} className="text-center text-white flex flex-col justify-center">

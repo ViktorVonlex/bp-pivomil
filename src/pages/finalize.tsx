@@ -69,7 +69,7 @@ const Finalize: NextPage = () => {
                 </div>
             
             </div>
-            <div className="grid grid-cols-2 gap-10 md:gap-8">
+            <div className="grid grid-cols-2 gap-10 sm:gap-8">
                 <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
                     Predchozi
                 </button>
