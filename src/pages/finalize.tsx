@@ -52,7 +52,7 @@ const Finalize: NextPage = () => {
                 
                 <div className="w-72">
                     <label htmlFor="email" className="pageHeader">
-                        Váš email:
+                        Kontaktní email:
                     </label>
                     <div className="relative rounded-md mt-2">
                         <input
