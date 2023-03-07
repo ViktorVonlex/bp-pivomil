@@ -41,16 +41,16 @@ const Glass: NextPage<Props> = ({ res }) => {
           <div className="w-28 h-36 relative">
             {
               loading === true && selected?.url !== undefined
-              ? <>
+                ? <>
                   <Image src={"/blurred-bg.jpg"} alt="Nacitani" fill className="rounded-l-md" />
-                  <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading}/>
+                  <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading} />
                 </>
-                
-              : <>
-                {selected?.url !== undefined &&
-                  <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading}/> 
-                }
-                </> 
+
+                : <>
+                  {selected?.url !== undefined &&
+                    <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading} />
+                  }
+                </>
             }
           </div>
           <div className="ml-5">
@@ -62,12 +62,12 @@ const Glass: NextPage<Props> = ({ res }) => {
 
       <div className="grid grid-cols-2 gap-10 sm:gap-8">
         <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
-            Predchozi
+          Predchozi
         </button>
         <Link href={"./typeSelection"} className="text-center text-white flex flex-col justify-center">
-            Dalsi
+          Dalsi
         </Link>
-    </div>
+      </div>
     </>
   );
 };
@@ -76,7 +76,7 @@ export default Glass;
 
 export function getStaticPaths() {
   return {
-    paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }],
+    paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }, { params: { glassType: 'džbán' } }, { params: { glassType: 'karafa' } }, { params: { glassType: 'lahev' } }, { params: { glassType: 'sklenice' } }],
     fallback: false, // can also be true or 'blocking'
   }
 }
