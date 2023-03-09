@@ -59,14 +59,19 @@ const Glass: NextPage<Props> = ({ res }) => {
           </div>
         </div>
       </div>
-
-      <div className="grid grid-cols-2 gap-10 sm:gap-8">
-        <button onClick={() => history.back()} className="text-center text-white flex flex-col justify-center">
-          Predchozi
+      <div className="inline-flex">
+        <button onClick={() => history.back()} className="bg-gray-300 hover:bg-gray-400 text-gray-800 w-16 h-16 font-bold py-2 px-4 rounded-l">
+          Zpět
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
         </button>
-        <Link href={"./typeSelection"} className="text-center text-white flex flex-col justify-center">
-          Dalsi
-        </Link>
+        <Link href={"./typeSelection"} className="bg-gray-300 hover:bg-gray-400 text-gray-800 w-16 h-16 font-bold py-2 px-4 rounded-r">
+          Dále
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-1">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          </svg>
+        </Link >
       </div>
     </>
   );

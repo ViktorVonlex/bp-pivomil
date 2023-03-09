@@ -29,23 +29,14 @@ const Home: NextPage<Props> = ({data}) => {
           )
         }
       </div>
-      <div className="grid grid-cols-2 gap-10 sm:gap-8">
-        <div></div>
-        {option1 !== "" &&
-        <Link href={`/glassSelection/${option1.toLowerCase()}`} className="text-center text-white flex flex-col justify-center">
-            Dalsi
-        </Link>}
-      </div>
       <div className="inline-flex">
-        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l">
-          Prev
-        </button>
-        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+        {option1 !== "" &&
+        <Link href={`/glassSelection/${option1.toLowerCase()}`} className="bg-gray-300 hover:bg-gray-400 text-gray-800 w-16 h-16 font-bold py-2 px-4 rounded">
           Dále
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-1">
             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
           </svg>
-        </button>
+        </Link >}
       </div>
     </>
   );
