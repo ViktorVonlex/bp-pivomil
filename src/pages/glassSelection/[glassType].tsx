@@ -38,7 +38,7 @@ const Glass: NextPage<Props> = ({ res }) => {
         }
       </div>
       <div className="w-72 flex justify-center">
-        <div className="w-fit flex justify-center items-center bg-[#2a0053] pr-5 rounded-md">
+        <div className="w-fit flex justify-center items-center bg-white/30 pr-5 rounded-md">
           <div className="w-28 h-36 relative">
             {
               loading === true && selected?.url !== undefined
