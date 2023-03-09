@@ -51,6 +51,7 @@ const Text: NextPage = () => {
 
     return (
         <>
+        <div className="bg-[#AB77AE] w-11/12 p-6 rounded-lg flex h-80 container flex-col items-center">
             <div className="flex-row">
 
                 <h2 className="pageHeader text-center sm:text-5xl sm:mb-3 mx-auto">
@@ -62,7 +63,7 @@ const Text: NextPage = () => {
                         selected !== undefined &&
                         <div className='flex items-center'>
                             <div className="w-max flex mr-6">
-                                <Link target="_blank" href="https://www.pivomil.cz/fotky53/fotov/_ps_614PISMO.pdf" className="rounded-xl mt-1 justify-center items-center bg-white/10 p-3 text-white hover:bg-white/20 active:bg-white/20">
+                                <Link target="_blank" href="https://www.pivomil.cz/fotky53/fotov/_ps_614PISMO.pdf" className="rounded-xl mt-1 justify-center items-center bg-white/30 p-3 text-white hover:bg-white/40 active:bg-white/40">
                                     Ukázka
                                 </Link>
                             </div>
@@ -73,14 +74,15 @@ const Text: NextPage = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="mt-3">
                 <TextInput setWordCounter={setWordCounter} />
             </div>
             {wordCounter > 0 &&
-                <p className="text-white">
+                <p className="text-white h-7 mt-12">
                     Předpokládaná cena pískování: {price} Kč
                 </p>
             }
+            </div>
             {wordCounter > 0 
             ?
             <div className="inline-flex">

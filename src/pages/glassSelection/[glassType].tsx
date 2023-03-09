@@ -27,6 +27,7 @@ const Glass: NextPage<Props> = ({ res }) => {
 
   return (
     <>
+    <div className="bg-[#AB77AE] w-11/12 p-6 rounded-lg flex container flex-col items-center justify-center gap-10">
       <h2 className="pageHeader mb-[-1.5rem] sm:text-5xl">
         Vyberte pískované sklo
       </h2>
@@ -37,7 +38,7 @@ const Glass: NextPage<Props> = ({ res }) => {
         }
       </div>
       <div className="w-72 flex justify-center">
-        <div className="w-fit flex justify-center items-center bg-black pr-5 rounded-md">
+        <div className="w-fit flex justify-center items-center bg-[#2a0053] pr-5 rounded-md">
           <div className="w-28 h-36 relative">
             {
               loading === true && selected?.url !== undefined
@@ -58,6 +59,7 @@ const Glass: NextPage<Props> = ({ res }) => {
             <p className="text-white">Bez DPH: {selected?.priceWOVat} Kč</p>
           </div>
         </div>
+      </div>
       </div>
       <div className="inline-flex">
         <button onClick={() => history.back()} className="bg-gray-300 hover:bg-gray-400 text-gray-800 w-16 h-16 font-bold py-2 px-4 rounded-l">

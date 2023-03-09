@@ -9,7 +9,7 @@ type Props = {
 
 function ImgHelper({url, name, setLoading}: Props) {
   return (
-    <Image src={url} fill alt={name} onLoadingComplete={()=>setLoading(false)} className="rounded-l-md" />
+    <Image src={url} fill alt={name} onLoadingComplete={()=>setLoading(false)} className="rounded-l-md bg-white p-1" />
   )
 }
 
