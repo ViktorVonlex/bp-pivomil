@@ -51,7 +51,7 @@ const Text: NextPage = () => {
 
     return (
         <>
-        <div className="bg-[#AB77AE] w-11/12 p-6 rounded-lg flex h-80 container flex-col items-center">
+        <div className="bg-[#AB77AE] w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex h-80 container flex-col items-center">
             <div className="flex-row">
 
                 <h2 className="pageHeader text-center sm:text-5xl sm:mb-3 mx-auto">
@@ -78,7 +78,7 @@ const Text: NextPage = () => {
                 <TextInput setWordCounter={setWordCounter} />
             </div>
             {wordCounter > 0 &&
-                <p className="text-white h-7 mt-12">
+                <p className="text-white sm:text-lg md:text-xl h-7 mt-12 sm:mt-8">
                     Předpokládaná cena pískování: {price} Kč
                 </p>
             }
