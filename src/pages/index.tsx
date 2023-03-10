@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Link from "next/link";
 import { useState } from "react";
+import Header from "~/components/Header";
 
 type Props = {
   data: {
@@ -14,6 +15,8 @@ const Home: NextPage<Props> = ({data}) => {
 
   return (
     <>
+    <Header>
+      <>
       <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
         Vyberte typ skla
       </h2>
@@ -38,6 +41,8 @@ const Home: NextPage<Props> = ({data}) => {
           </svg>
         </Link >}
       </div>
+      </>
+      </Header>
     </>
   );
 };
