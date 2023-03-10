@@ -15,8 +15,6 @@ const Home: NextPage<Props> = ({data}) => {
 
   return (
     <>
-    <Header>
-      <>
       <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
         Vyberte typ skla
       </h2>
@@ -41,8 +39,6 @@ const Home: NextPage<Props> = ({data}) => {
           </svg>
         </Link >}
       </div>
-      </>
-      </Header>
     </>
   );
 };
