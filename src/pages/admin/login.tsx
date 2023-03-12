@@ -1,5 +1,7 @@
 import { signIn } from "next-auth/react";
+import { type GetServerSideProps } from "next/types";
 import { useRef } from "react";
+import { getServerAuthSession } from "~/server/auth";
 
 interface IProps {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -14,7 +16,7 @@ const LoginPage = ({ searchParams }: IProps) => {
       username: userName.current,
       password: pass.current,
       redirect: true,
-      callbackUrl: "/",
+      callbackUrl: "/admin",
     });
   };
   return (
@@ -30,3 +32,22 @@ const LoginPage = ({ searchParams }: IProps) => {
 };
 
 export default LoginPage;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getServerAuthSession(ctx)
+
+  if (session) {
+    return {
+      redirect: {
+        destination: '/admin',
+        permanent: false,
+      },
+    }
+  }
+  
+  return {
+    props: {
+      data: null
+    },
+  }
+}

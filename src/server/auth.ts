@@ -20,7 +20,7 @@ declare module "next-auth" {
       id: string;
       // ...other properties
       // role: UserRole;
-    } & DefaultSession["user"];
+    };
   }
 
   interface User {
@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions = {
         token.uid = user.id;
       }
       return token;
-    },
+    }
   },
   session: {
     strategy: "jwt",

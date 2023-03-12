@@ -8,12 +8,13 @@ import "../styles/globals.css";
 function MyApp({ Component, pageProps : { session, ...pageProps }, router }: AppProps) {
   // Determine if the current page should not include the header
   const noHeader = router.pathname === "/admin/login";
+  const noHeader2 = router.pathname === "/admin"
 
   // Render the App component with the appropriate header and page content
   return (
     <>
       <SessionProvider session={session}>
-        {noHeader
+        {noHeader || noHeader2
         ? <Component {...pageProps} />
         : <Header>
             <Component {...pageProps} />
