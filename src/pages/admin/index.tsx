@@ -4,7 +4,11 @@ import type { GetServerSideProps } from "next";
 
 export default function Page() {
   
-  return <p>Access Denied</p>
+  return (
+    <>
+        <h1>Pivomil custom objednávky dashboard</h1>
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

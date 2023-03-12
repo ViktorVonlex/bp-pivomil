@@ -19,3 +19,14 @@ model Product {
     url         String
 }
 
+model Order {
+    id          Int      @id @default(autoincrement())
+    service     String
+    product     String
+    font        String?
+    text        String?
+    picture     String?
+    size        String?
+    mail        String
+    price       Int
+}
