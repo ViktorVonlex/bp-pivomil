@@ -23,3 +23,16 @@ export type Order = {
     mail: string,
     price: number
 }
+
+export type Picture = {
+    id: number,
+    name: string
+    url: string
+}
+
+export type Size = {
+    id: number,
+    name: string,
+    price: number,
+    priceWoVat: number
+}

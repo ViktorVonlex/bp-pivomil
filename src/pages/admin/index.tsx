@@ -1,5 +1,5 @@
 import { getServerAuthSession } from "../../server/auth";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { GetServerSideProps } from "next";
 import { type Order } from "~/util/types";
 
@@ -21,7 +21,6 @@ export default function Page() {
     }
   }
   
-
   useEffect( () => {
     if(fetchNew === true) {
       fetch('/api/getOrders')

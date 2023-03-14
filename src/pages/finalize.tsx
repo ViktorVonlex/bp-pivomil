@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type NextPage } from "next";
 import { useEffect, useState } from "react";
 import { type SelectedFont, type Item } from "~/util/types";
@@ -69,9 +68,8 @@ const Finalize: NextPage = () => {
                     <form className="relative rounded-md mt-5" id="myform"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        if(service === "text") {
-                            //@ts-ignore
-                            void saveTextOrder(selectedProduct?.name, selectedFont?.selectedFont.name, finalPrice, localStorage.getItem("userMail"))
+                        if(service === "text") {                           
+                            void saveTextOrder(selectedProduct?.name as string, selectedFont?.selectedFont.name as string, finalPrice, localStorage.getItem("userMail") as string)
                         }
                     }}>
                         <label htmlFor="email" className="text-2xl text-center tracking-tight text-white">
