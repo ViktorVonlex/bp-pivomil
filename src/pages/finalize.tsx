@@ -76,7 +76,7 @@ const Finalize: NextPage = () => {
             <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
                 Vaše objednávka
             </h2>
-            <div className="bg-[#AB77AE] w-11/12 md:mt-2 sm:w-auto p-6 rounded-lg flex h-80 container flex-col mt-[-24px]">
+            <div className="bg-[#AB77AE] w-11/12 md:mt-2 sm:w-auto p-6 rounded-lg flex container flex-col mt-[-24px]">
                 
                 <p className="text-white mb-2">Vybrané sklo: {selectedProduct?.name}</p>
                 <p className="text-white mb-2">Pískování: {service.toUpperCase()}</p>
@@ -93,7 +93,7 @@ const Finalize: NextPage = () => {
                 <p className="text-white mb-2">Předpokládaná cena: {finalPrice} Kč</p>
                 <p className="text-white mb-2">Předpokládaná cena bez daně: {(finalPrice / 1.21).toFixed(0)} Kč</p>
                 
-                <div className="w-72">
+                <div className="w-72 mb-2">
                     
                     <form className="relative rounded-md mt-5" id="myform"
                     onSubmit={(e) => {
