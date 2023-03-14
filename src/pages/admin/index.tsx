@@ -28,7 +28,6 @@ export default function Page() {
       .then(res =>  res.json()
       )
       .then(data => {
-          console.log(data)
           setOrders(data as Order[])
           setFetchNew(false)
       })

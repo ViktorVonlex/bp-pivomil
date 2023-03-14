@@ -18,8 +18,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     try {
         const orders = await prisma.order.findMany()
-        console.log(orders)
-
         if(orders!==null) {
           res.status(200).json(orders);
         }

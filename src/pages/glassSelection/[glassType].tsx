@@ -101,7 +101,6 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
       }
     });
 
-    console.log(selectedTypeProducts)
     res = selectedTypeProducts
   } catch (err) {
     console.log("yikes")

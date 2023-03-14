@@ -17,7 +17,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const info = JSON.parse(req.body)
-    console.log(info)
 
     try {
         await prisma.order.delete({
