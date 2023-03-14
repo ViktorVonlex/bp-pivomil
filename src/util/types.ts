@@ -13,6 +13,7 @@ export type SelectedFont = {
 }
 
 export type Order = {
+    id?: number
     service: string,
     product: string,
     font?: string,
