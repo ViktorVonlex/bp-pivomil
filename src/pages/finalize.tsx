@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { useEffect, useState } from "react";
-import { type SelectedFont, type Item } from "~/util/types";
+import { type SelectedFont, type Item, type SelectedPicture } from "~/util/types";
 
 function saveUserMail(str:string) {
     localStorage.setItem("userMail", str)
@@ -23,12 +23,13 @@ const Finalize: NextPage = () => {
 
     const [selectedProduct, setSelectedProduct] = useState<Item>()
     const [selectedFont, setSelectedFont] = useState<SelectedFont>()
+    const [selectedPicture, setSelectedPicture] = useState<SelectedPicture>()
     const [finalPrice, setFinalPrice] = useState<number>(0)
     const [service, setSelectedService] = useState<string>("")
 
     useEffect(() => {
         const selectedProductString = localStorage.getItem("selectedProduct")
-        const selectedFontString = localStorage.getItem("selectedFont")
+        
         const selectedService = localStorage.getItem("service")
         let helperPrice = 0;
         if (selectedProductString !== null) {
@@ -41,10 +42,20 @@ const Finalize: NextPage = () => {
         
         if (selectedService === "text") {
             setSelectedService(selectedService)
+            const selectedFontString = localStorage.getItem("selectedFont")
             if (selectedFontString !== null) {
                 const selectedFontObject = JSON.parse(selectedFontString) as SelectedFont
                 setSelectedFont(selectedFontObject)
                 helperPrice = helperPrice + selectedFontObject.price
+            }
+        }
+        if(selectedService === "obrázek"){
+            const selectedPicture = localStorage.getItem("selectedPicture")
+            setSelectedService(selectedService)
+            if (selectedPicture !== null) {
+                const selectedPictureObject = JSON.parse(selectedPicture) as SelectedPicture
+                setSelectedPicture(selectedPictureObject)
+                helperPrice = helperPrice + selectedPictureObject.price
             }
         }
         setFinalPrice(helperPrice)
@@ -59,7 +70,16 @@ const Finalize: NextPage = () => {
                 
                 <p className="text-white mb-2">Vybrané sklo: {selectedProduct?.name}</p>
                 <p className="text-white mb-2">Pískování: {service.toUpperCase()}</p>
-                <p className="text-white mb-2">Písmo: {selectedFont?.selectedFont.name}</p>
+                {
+                    service === "text"
+                    ? <p className="text-white mb-2">Písmo: {selectedFont?.selectedFont.name}</p>
+                    :
+                    <>
+                        <p className="text-white mb-2">Číslo obrázku: {selectedPicture?.picture}</p>
+                        <p className="text-white mb-2">Velikost obrázku: {selectedPicture?.size}</p>
+                    </>
+                }
+                
                 <p className="text-white mb-2">Předpokládaná cena: {finalPrice} Kč</p>
                 <p className="text-white mb-2">Předpokládaná cena bez daně: {(finalPrice / 1.21).toFixed(0)} Kč</p>
                 

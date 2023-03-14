@@ -24,7 +24,7 @@ const TypeSelection: NextPage = () => {
           <h2 className="text-2xl font-bold">TEXT</h2>
         </button>
         <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20"
-        onClick={() => {setService("picture");setNextPage(`./typeSelection/picture`)}}>
+        onClick={() => {setService("obrázek");setNextPage(`./typeSelection/picture`)}}>
           <h2 className="text-2xl font-bold">OBRÁZEK</h2>
         </button>
       </div>
