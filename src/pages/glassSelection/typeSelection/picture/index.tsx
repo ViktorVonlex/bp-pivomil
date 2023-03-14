@@ -35,57 +35,61 @@ const Text: NextPage = () => {
 
     return (
         <>
-            <h2 className="pageHeader text-center sm:text-5xl sm:mb-3 mx-auto">
-                    Vyberte obrázek
-            </h2>
+        <div className="bg-[#AB77AE] w-11/12 sm:w-auto md:p-7 p-5 rounded-lg flex container flex-col items-center">
+           
+                <h2 className="pageHeader text-center sm:text-5xl sm:mb-3 mx-auto">
+                        Vyberte obrázek
+                </h2>
 
-            <div className="w-72 z-20 mt-3 mx-auto sm:mb-0 sm:w-96">
-                {
-                    selected !== undefined &&
-                    <div className='flex items-center'>
-                         <div className="w-20 flex mr-6">
-                            <Link target="_blank" href="https://www.pivomil.cz/Obrazky-pro-piskovani-a9_40.htm" className="rounded-xl mt-1 justify-center items-center bg-white/10 p-3 text-white hover:bg-white/20 active:bg-white/20">
-                                Ukázka
-                            </Link>
-                        </div>
-                        <Dropdown selected={selected} setSelected={setSelected as Dispatch<SetStateAction<Item | undefined>>} items={pictures} />
-                    </div>      
-                }
-            </div>
-            <div className="w-72 z-10 mb-3 mx-auto sm:mb-0 sm:w-96">
-                {
-                    selectedSize !== undefined &&
-                    <div className='flex items-center'>
-                         <div className="w-20 flex mr-6">
-                            <p className='text-white justify-center items-center ml-2'>Velikost:</p>
-                        </div>
-                        <Dropdown selected={selectedSize} setSelected={setSelectedSize as Dispatch<SetStateAction<Item | undefined>>} items={sizes} />
-                    </div>      
-                }
-            </div>
-            <div className="w-72 flex justify-center">
-                <div className="w-fit flex justify-center items-center bg-white/30 pr-5 rounded-md">
-                    <div className="w-28 h-36 relative">
-                        {
-                        loading === true && selected?.url !== undefined
-                            ? <>
-                            <Image src={"/blurred-bg.jpg"} alt="Nacitani" fill className="rounded-l-md" />
-                            <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading} />
-                            </>
-
-                            : <>
-                            {selected?.url !== undefined &&
+                <div className="w-64 z-20 mt-3 mx-auto sm:mb-0 sm:w-96">
+                    {
+                        selected !== undefined &&
+                        <div className='flex items-center'>
+                            <div className="w-20 flex mr-6">
+                                <Link target="_blank" href="https://www.pivomil.cz/Obrazky-pro-piskovani-a9_40.htm" className="rounded-xl mt-1 justify-center items-center bg-white/10 p-3 text-white hover:bg-white/20 active:bg-white/20">
+                                    Ukázka
+                                </Link>
+                            </div>
+                            <Dropdown selected={selected} setSelected={setSelected as Dispatch<SetStateAction<Item | undefined>>} items={pictures} />
+                        </div>      
+                    }
+                </div>
+                <div className="w-64 z-10 mb-3 mx-auto sm:mb-0 sm:w-96">
+                    {
+                        selectedSize !== undefined &&
+                        <div className='flex items-center'>
+                            <div className="w-20 flex mr-6">
+                                <p className='text-white justify-center items-center p-2'>Velikost:</p>
+                            </div>
+                            <Dropdown selected={selectedSize} setSelected={setSelectedSize as Dispatch<SetStateAction<Item | undefined>>} items={sizes} />
+                        </div>      
+                    }
+                </div>
+                <div className="w-72 mt-3 sm:mt-4 md:mt-6 flex justify-center">
+                    <div className="w-fit flex justify-center items-center bg-white/30 pr-5 rounded-md">
+                        <div className="w-28 h-36 relative">
+                            {
+                            loading === true && selected?.url !== undefined
+                                ? <>
+                                <Image src={"/blurred-bg.jpg"} alt="Nacitani" fill className="rounded-l-md" />
                                 <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading} />
+                                </>
+
+                                : <>
+                                {selected?.url !== undefined &&
+                                    <ImgHelper url={selected?.url} name={selected?.name} setLoading={setLoading} />
+                                }
+                                </>
                             }
-                            </>
-                        }
-                    </div>
-                    <div className="ml-5">
-                        <p className="text-white">Cena: {selectedSize?.price} Kč</p>
-                        <p className="text-white">Bez DPH: {selectedSize?.priceWoVat} Kč</p>
+                        </div>
+                        <div className="ml-5">
+                            <p className="text-white">Cena: {selectedSize?.price} Kč</p>
+                            <p className="text-white">Bez DPH: {selectedSize?.priceWoVat} Kč</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            
+        </div>
             <div className="inline-flex">
                 <button onClick={() => history.back()} className="bg-gray-300 hover:bg-gray-400 text-gray-800 w-16 h-16 font-bold py-2 px-4 rounded-l">
                     Zpět

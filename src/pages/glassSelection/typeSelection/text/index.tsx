@@ -82,7 +82,7 @@ const Text: NextPage = () => {
                     Předpokládaná cena pískování: {price} Kč
                 </p>
             }
-            </div>
+        </div>
             {wordCounter > 0 
             ?
             <div className="inline-flex">
