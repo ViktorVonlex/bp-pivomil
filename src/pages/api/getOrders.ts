@@ -16,9 +16,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(405).json({ message: 'Method not allowed' });
     }
 
-
     try {
         const orders = await prisma.order.findMany()
+        console.log(orders)
 
         if(orders!==null) {
           res.status(200).json(orders);

@@ -1,26 +1,44 @@
 import { getServerAuthSession } from "../../server/auth";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import type { GetServerSideProps } from "next";
 import { type Order } from "~/util/types";
-
 
 export default function Page() {
 
   const [orders, setOrders] = useState<Order[]>()
+  const [fetchNew, setFetchNew] = useState<boolean>(true)
+
+
+  async function deleteOrder(id: number) {
+    try {
+      await fetch('/api/deleteOrder', {
+      method: 'POST',
+      body: JSON.stringify({id: id})
+      })
+      setFetchNew(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
 
   useEffect( () => {
-    fetch('/api/getOrders')
+    if(fetchNew === true) {
+      fetch('/api/getOrders')
       .then(res =>  res.json()
       )
       .then(data => {
           console.log(data)
           setOrders(data as Order[])
+          setFetchNew(false)
       })
       .catch(err => {
           console.log(err)
+          setFetchNew(false)
       }
       )
-  }, [])
+    }
+  }, [fetchNew])
   
   
   return (
@@ -59,7 +77,7 @@ export default function Page() {
                     <td>{val.product}</td>
                     <td>{val.price} Kč</td>
                     <td>
-                      <button>Smazat</button>
+                      <button onClick={()=> void deleteOrder(val.id as number)}>Smazat</button>
                     </td>
                   </tr>
                 )})
