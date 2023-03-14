@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { useEffect, useState } from "react";
-import { type SelectedFont, type Item, type SelectedPicture } from "~/util/types";
+import { type SelectedFont, type Item, type SelectedPicture, Picture } from "~/util/types";
 
 function saveUserMail(str:string) {
     localStorage.setItem("userMail", str)
@@ -16,7 +16,17 @@ async function saveTextOrder(productName: string, font: string, finalPrice: numb
     } catch (error) {
         console.log(error)
     }
-    
+}
+
+async function savePictureOrder(productName: string, picture: SelectedPicture, finalPrice: number, mail: string) {
+    try {
+        await fetch('/api/saveOrder', {
+        method: 'POST',
+        body: JSON.stringify({service: "obrázek", product: productName, picture: picture.picture, size: picture.size, mail: mail, price: finalPrice})
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const Finalize: NextPage = () => {
@@ -90,6 +100,9 @@ const Finalize: NextPage = () => {
                         e.preventDefault();
                         if(service === "text") {                           
                             void saveTextOrder(selectedProduct?.name as string, selectedFont?.selectedFont.name as string, finalPrice, localStorage.getItem("userMail") as string)
+                        }
+                        if(service === "obrázek") {
+                            void savePictureOrder(selectedProduct?.name as string, selectedPicture as SelectedPicture, finalPrice, localStorage.getItem("userMail") as string)
                         }
                     }}>
                         <label htmlFor="email" className="text-2xl text-center tracking-tight text-white">
