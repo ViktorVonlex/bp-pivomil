@@ -6,12 +6,12 @@ import prisma from '../../util/prisma'
 import { getSession } from 'next-auth/react';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-/*
+
   const session = await getSession({req})
   if(!session) {
     res.status(401).json({error: "Unauthenticated user"});
   } 
-  else {*/
+  else {
     if (req.method !== 'POST') {
       return res.status(405).json({ message: 'Method not allowed' });
     }
@@ -29,7 +29,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } catch (err) {
       res.status(400).json({ message: 'Something went wrong' });
     }
-  //}
+  }
 };
 
 export default handler
