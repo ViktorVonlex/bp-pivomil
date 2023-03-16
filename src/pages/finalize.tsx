@@ -1,29 +1,32 @@
 import { type NextPage } from "next";
-import { useEffect, useState } from "react";
-import { type SelectedFont, type Item, type SelectedPicture, Picture } from "~/util/types";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
+import MyModal from "~/components/Dialog";
+import { type SelectedFont, type Item, type SelectedPicture } from "~/util/types";
 
 function saveUserMail(str:string) {
     localStorage.setItem("userMail", str)
 }
 
-async function saveTextOrder(productName: string, font: string, finalPrice: number, mail: string) {
+async function saveTextOrder(productName: string, font: string, finalPrice: number, mail: string, setIsOpen: Dispatch<SetStateAction<boolean>>) {
     const orderText = localStorage.getItem("text")
     try {
         await fetch('/api/saveOrder', {
         method: 'POST',
         body: JSON.stringify({service: "text", product: productName, font: font, text: orderText, mail: mail, price: finalPrice})
         })
+        setIsOpen(true)
     } catch (error) {
         console.log(error)
     }
 }
 
-async function savePictureOrder(productName: string, picture: SelectedPicture, finalPrice: number, mail: string) {
+async function savePictureOrder(productName: string, picture: SelectedPicture, finalPrice: number, mail: string, setIsOpen: Dispatch<SetStateAction<boolean>>) {
     try {
         await fetch('/api/saveOrder', {
         method: 'POST',
         body: JSON.stringify({service: "obrázek", product: productName, picture: picture.picture, size: picture.size, mail: mail, price: finalPrice})
         })
+        setIsOpen(true)
     } catch (error) {
         console.log(error)
     }
@@ -36,6 +39,7 @@ const Finalize: NextPage = () => {
     const [selectedPicture, setSelectedPicture] = useState<SelectedPicture>()
     const [finalPrice, setFinalPrice] = useState<number>(0)
     const [service, setSelectedService] = useState<string>("")
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     useEffect(() => {
         const selectedProductString = localStorage.getItem("selectedProduct")
@@ -99,10 +103,10 @@ const Finalize: NextPage = () => {
                     onSubmit={(e) => {
                         e.preventDefault();
                         if(service === "text") {                           
-                            void saveTextOrder(selectedProduct?.name as string, selectedFont?.selectedFont.name as string, finalPrice, localStorage.getItem("userMail") as string)
+                            void saveTextOrder(selectedProduct?.name as string, selectedFont?.selectedFont.name as string, finalPrice, localStorage.getItem("userMail") as string, setIsOpen)
                         }
                         if(service === "obrázek") {
-                            void savePictureOrder(selectedProduct?.name as string, selectedPicture as SelectedPicture, finalPrice, localStorage.getItem("userMail") as string)
+                            void savePictureOrder(selectedProduct?.name as string, selectedPicture as SelectedPicture, finalPrice, localStorage.getItem("userMail") as string, setIsOpen)
                         }
                     }}>
                         <label htmlFor="email" className="text-2xl text-center tracking-tight text-white">
@@ -138,6 +142,7 @@ const Finalize: NextPage = () => {
                     </svg>
                 </button>
             </div>
+            <MyModal isOpen={isOpen} setIsOpen={setIsOpen} /> 
         </>
     );
 };
