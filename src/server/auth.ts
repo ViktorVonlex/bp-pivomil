@@ -69,11 +69,11 @@ export const authOptions: NextAuthOptions = {
           password: string;
         };
 
-        //const salt = await bcrypt.genSalt(10)
-        const salt = "$2b$10$Sf/HS1jaHrXAdRt42tlsvu"
+        const salt = env.SALT
         console.log(salt)
         const pass = await bcrypt.hash(password, salt)
         console.log(pass)
+        const nvm = "$2b$10$Sf/HS1jaHrXAdRt42tlsvu5nkcdiXfCLoX/i6ZTUW9FA7mV0KERcm"
 
         if (env.ADMIN_ID !== username || pass !== env.ADMIN_PS) {
           throw new Error("invalid credentials");
