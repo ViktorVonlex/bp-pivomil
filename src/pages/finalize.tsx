@@ -36,6 +36,7 @@ const Finalize: NextPage = () => {
 
     const [selectedProduct, setSelectedProduct] = useState<Item>()
     const [selectedFont, setSelectedFont] = useState<SelectedFont>()
+    const [text, setText] = useState<string>()
     const [selectedPicture, setSelectedPicture] = useState<SelectedPicture>()
     const [finalPrice, setFinalPrice] = useState<number>(0)
     const [service, setSelectedService] = useState<string>("")
@@ -62,6 +63,10 @@ const Finalize: NextPage = () => {
                 setSelectedFont(selectedFontObject)
                 helperPrice = helperPrice + selectedFontObject.price
             }
+            const customerText = localStorage.getItem("text")
+            if (customerText !== null) {
+                setText(customerText)
+            }
         }
         if(selectedService === "obrázek"){
             const selectedPicture = localStorage.getItem("selectedPicture")
@@ -86,7 +91,11 @@ const Finalize: NextPage = () => {
                 <p className="text-white mb-2">Pískování: {service.toUpperCase()}</p>
                 {
                     service === "text"
-                    ? <p className="text-white mb-2">Písmo: {selectedFont?.selectedFont.name}</p>
+                    ? 
+                    <>
+                        <p className="text-white mb-2">Písmo: {selectedFont?.selectedFont.name}</p>
+                        <p className="text-white mb-2">Text: {text}</p>
+                    </>
                     :
                     <>
                         <p className="text-white mb-2">Číslo obrázku: {selectedPicture?.picture}</p>
