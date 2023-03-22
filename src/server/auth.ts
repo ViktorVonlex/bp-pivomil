@@ -68,7 +68,9 @@ export const authOptions: NextAuthOptions = {
           username: string;
           password: string;
         };
-        
+
+        console.log(password)
+
         if (env.ADMIN_ID !== username || await bcrypt.compare(password, env.ADMIN_PS)) {
           throw new Error("invalid credentials");
         }
