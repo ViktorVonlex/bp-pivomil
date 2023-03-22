@@ -69,7 +69,8 @@ export const authOptions: NextAuthOptions = {
           password: string;
         };
 
-        const pass = await bcrypt.hash(password, 10)
+        const saltRounds = 10;
+        const pass = await bcrypt.hash(password, saltRounds)
         console.log(pass)
 
         if (env.ADMIN_ID !== username || env.ADMIN_PS !== pass) {
