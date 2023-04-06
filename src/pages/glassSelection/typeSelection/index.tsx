@@ -19,11 +19,11 @@ const TypeSelection: NextPage = () => {
         Chci vypískovat
       </h2>
       <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-        <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20"
+        <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20 focus:outline-none focus:ring focus:ring-violet-100"
         onClick={() => {setService("text");setNextPage(`./typeSelection/text`)}}>
           <h2 className="text-2xl font-bold">TEXT</h2>
         </button>
-        <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20"
+        <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20 focus:outline-none focus:ring focus:ring-violet-100"
         onClick={() => {setService("obrázek");setNextPage(`./typeSelection/picture`)}}>
           <h2 className="text-2xl font-bold">OBRÁZEK</h2>
         </button>
