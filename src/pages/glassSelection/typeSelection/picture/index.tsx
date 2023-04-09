@@ -35,7 +35,7 @@ const Text: NextPage = () => {
 
     return (
         <>
-            <div className="bg-[#AB77AE] w-11/12 sm:w-auto md:p-7 p-5 rounded-lg flex container flex-col items-center">
+            <div className="bg-[#AB77AE] outline outline-pink-200 w-11/12 sm:w-auto md:p-7 p-5 rounded-lg flex container flex-col items-center">
 
                 <h2 className="pageHeader text-center sm:text-5xl sm:mb-3 mx-auto">
                     Vyberte obrázek

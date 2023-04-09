@@ -27,7 +27,7 @@ const Glass: NextPage<Props> = ({ res }) => {
 
   return (
     <>
-    <div className="bg-[#AB77AE] w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex container flex-col items-center justify-center gap-10">
+    <div className="bg-[#AB77AE] outline outline-pink-200 w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex container flex-col items-center justify-center gap-10">
       <h2 className="pageHeader mb-[-1.5rem] sm:text-5xl">
         Vyberte pískované sklo
       </h2>

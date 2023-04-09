@@ -80,7 +80,7 @@ const Finalize: NextPage = () => {
             <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
                 Vaše objednávka
             </h2>
-            <div className="bg-[#AB77AE] w-11/12 md:mt-2 sm:w-auto p-6 rounded-lg flex container flex-col mt-[-24px]">
+            <div className="bg-[#AB77AE] outline outline-pink-200 w-11/12 md:mt-2 sm:w-auto p-6 rounded-lg flex container flex-col mt-[-24px]">
                 
                 <p className="text-white mb-2">Vybrané sklo: {selectedProduct?.name}</p>
                 <p className="text-white mb-2">Pískování: {service.toUpperCase()}</p>
