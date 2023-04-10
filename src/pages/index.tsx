@@ -21,7 +21,7 @@ const Home: NextPage<Props> = ({data}) => {
         {
           data.options.map(option =>
           
-            <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20"
+            <button className="flex max-w-xs flex-col gap-4 rounded-xl justify-center items-center bg-white/10 p-4 text-white hover:bg-white/20 active:bg-white/20 focus:outline-none focus:ring focus:ring-violet-100"
                 key={option} onClick={() => setOption1(option)}>
               <h2 className="text-2xl font-bold">{option}</h2>
             </button>
