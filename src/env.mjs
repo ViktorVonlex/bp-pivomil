@@ -21,7 +21,7 @@ const server = z.object({
   ),
   ADMIN_ID: z.string().min(1),
   ADMIN_PS: z.string().min(1),
-  SALT: z.string().min(1)
+  SALT: z.string()
 });
 
 /**

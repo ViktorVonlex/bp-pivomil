@@ -51,24 +51,14 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       type: "credentials",
-      credentials: {
-        username: {
-          label: "Username",
-          type: "text",
-          placeholder: "jsmith",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-        }
-      },
+      credentials: {},
 
       async authorize(credentials, req) {
         const { username, password } = credentials as {
           username: string;
           password: string;
         };
-
+        
         const salt = env.SALT
         const pass = await bcrypt.hash(password, salt)
 

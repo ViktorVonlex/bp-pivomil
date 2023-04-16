@@ -83,7 +83,9 @@ export default Glass;
 
 export function getStaticPaths() {
   return {
-    paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }, { params: { glassType: 'džbán' } }, { params: { glassType: 'karafa' } }, { params: { glassType: 'lahev' } }, { params: { glassType: 'sklenice' } }],
+    paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }, 
+    { params: { glassType: 'džbán' } }, { params: { glassType: 'karafa' } }, 
+    { params: { glassType: 'lahev' } }, { params: { glassType: 'sklenice' } }],
     fallback: false, // can also be true or 'blocking'
   }
 }
@@ -103,7 +105,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 
     res = selectedTypeProducts
   } catch (err) {
-    console.log("yikes")
+    console.log("Something went wrong")
   }
 
   return {
