@@ -12,8 +12,8 @@ export default function Page() {
   async function deleteOrder(id: number) {
     try {
       await fetch('/api/deleteOrder', {
-      method: 'POST',
-      body: JSON.stringify({id: id})
+      method: 'DELETE',
+      body: JSON.stringify({id: id}),
       })
       setFetchNew(true)
     } catch (error) {

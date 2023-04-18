@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(401).json({error: "Unauthenticated user"});
   } 
   else {
-    if (req.method !== 'POST') {
+    if (req.method !== 'DELETE') {
       return res.status(405).json({ message: 'Method not allowed' });
     }
 
