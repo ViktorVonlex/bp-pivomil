@@ -10,11 +10,13 @@ function saveUserMail(str:string) {
 async function saveTextOrder(productName: string, font: string, finalPrice: number, mail: string, setIsOpen: Dispatch<SetStateAction<boolean>>) {
     const orderText = localStorage.getItem("text")
     try {
-        await fetch('/api/saveOrder', {
+        const response = await fetch('/api/saveOrder', {
         method: 'POST',
         body: JSON.stringify({service: "text", product: productName, font: font, text: orderText, mail: mail, price: finalPrice})
         })
-        setIsOpen(true)
+        if (response.ok) {
+            setIsOpen(true)
+        }
     } catch (error) {
         console.log(error)
     }
@@ -22,11 +24,14 @@ async function saveTextOrder(productName: string, font: string, finalPrice: numb
 
 async function savePictureOrder(productName: string, picture: SelectedPicture, finalPrice: number, mail: string, setIsOpen: Dispatch<SetStateAction<boolean>>) {
     try {
-        await fetch('/api/saveOrder', {
+        const response = await fetch('/api/saveOrder', {
         method: 'POST',
         body: JSON.stringify({service: "obrázek", product: productName, picture: picture.picture, size: picture.size, mail: mail, price: finalPrice})
         })
         setIsOpen(true)
+        if (response.ok) {
+            setIsOpen(true)
+        }
     } catch (error) {
         console.log(error)
     }
