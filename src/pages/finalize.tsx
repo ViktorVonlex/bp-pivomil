@@ -1,35 +1,55 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type NextPage } from "next";
-import { useEffect, useState } from "react";
-import { type SelectedFont, type Item } from "~/util/types";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
+import MyModal from "~/components/Dialog";
+import { type SelectedFont, type Item, type SelectedPicture } from "~/util/types";
 
 function saveUserMail(str:string) {
     localStorage.setItem("userMail", str)
 }
 
-async function saveTextOrder(productName: string, font: string, finalPrice: number, mail: string) {
+async function saveTextOrder(productName: string, font: string, finalPrice: number, mail: string, setIsOpen: Dispatch<SetStateAction<boolean>>) {
     const orderText = localStorage.getItem("text")
     try {
-        await fetch('/api/saveOrder', {
+        const response = await fetch('/api/saveOrder', {
         method: 'POST',
         body: JSON.stringify({service: "text", product: productName, font: font, text: orderText, mail: mail, price: finalPrice})
         })
+        if (response.ok) {
+            setIsOpen(true)
+        }
     } catch (error) {
         console.log(error)
     }
-    
+}
+
+async function savePictureOrder(productName: string, picture: SelectedPicture, finalPrice: number, mail: string, setIsOpen: Dispatch<SetStateAction<boolean>>) {
+    try {
+        const response = await fetch('/api/saveOrder', {
+        method: 'POST',
+        body: JSON.stringify({service: "obrázek", product: productName, picture: picture.picture, size: picture.size, mail: mail, price: finalPrice})
+        })
+        setIsOpen(true)
+        if (response.ok) {
+            setIsOpen(true)
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const Finalize: NextPage = () => {
 
     const [selectedProduct, setSelectedProduct] = useState<Item>()
     const [selectedFont, setSelectedFont] = useState<SelectedFont>()
+    const [text, setText] = useState<string>()
+    const [selectedPicture, setSelectedPicture] = useState<SelectedPicture>()
     const [finalPrice, setFinalPrice] = useState<number>(0)
     const [service, setSelectedService] = useState<string>("")
+    const [isOpen, setIsOpen] = useState<boolean>(false)
 
     useEffect(() => {
         const selectedProductString = localStorage.getItem("selectedProduct")
-        const selectedFontString = localStorage.getItem("selectedFont")
+        
         const selectedService = localStorage.getItem("service")
         let helperPrice = 0;
         if (selectedProductString !== null) {
@@ -42,10 +62,24 @@ const Finalize: NextPage = () => {
         
         if (selectedService === "text") {
             setSelectedService(selectedService)
+            const selectedFontString = localStorage.getItem("selectedFont")
             if (selectedFontString !== null) {
                 const selectedFontObject = JSON.parse(selectedFontString) as SelectedFont
                 setSelectedFont(selectedFontObject)
                 helperPrice = helperPrice + selectedFontObject.price
+            }
+            const customerText = localStorage.getItem("text")
+            if (customerText !== null) {
+                setText(customerText)
+            }
+        }
+        if(selectedService === "obrázek"){
+            const selectedPicture = localStorage.getItem("selectedPicture")
+            setSelectedService(selectedService)
+            if (selectedPicture !== null) {
+                const selectedPictureObject = JSON.parse(selectedPicture) as SelectedPicture
+                setSelectedPicture(selectedPictureObject)
+                helperPrice = helperPrice + selectedPictureObject.price
             }
         }
         setFinalPrice(helperPrice)
@@ -56,22 +90,37 @@ const Finalize: NextPage = () => {
             <h2 className="text-2xl text-center tracking-tight text-white sm:text-[5rem]">
                 Vaše objednávka
             </h2>
-            <div className="bg-[#AB77AE] w-11/12 md:mt-2 sm:w-auto p-6 rounded-lg flex h-80 container flex-col mt-[-24px]">
+            <div className="bg-[#AB77AE] outline outline-pink-200 w-11/12 md:mt-2 sm:w-auto p-6 rounded-lg flex container flex-col mt-[-24px]">
                 
                 <p className="text-white mb-2">Vybrané sklo: {selectedProduct?.name}</p>
                 <p className="text-white mb-2">Pískování: {service.toUpperCase()}</p>
-                <p className="text-white mb-2">Písmo: {selectedFont?.selectedFont.name}</p>
+                {
+                    service === "text"
+                    ? 
+                    <>
+                        <p className="text-white mb-2">Písmo: {selectedFont?.selectedFont.name}</p>
+                        <p className="text-white mb-2">Text: {text}</p>
+                    </>
+                    :
+                    <>
+                        <p className="text-white mb-2">Číslo obrázku: {selectedPicture?.picture}</p>
+                        <p className="text-white mb-2">Velikost obrázku: {selectedPicture?.size}</p>
+                    </>
+                }
+                
                 <p className="text-white mb-2">Předpokládaná cena: {finalPrice} Kč</p>
                 <p className="text-white mb-2">Předpokládaná cena bez daně: {(finalPrice / 1.21).toFixed(0)} Kč</p>
                 
-                <div className="w-72">
+                <div className="w-72 mb-2">
                     
                     <form className="relative rounded-md mt-5" id="myform"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        if(service === "text") {
-                            //@ts-ignore
-                            void saveTextOrder(selectedProduct?.name, selectedFont?.selectedFont.name, finalPrice, localStorage.getItem("userMail"))
+                        if(service === "text") {                           
+                            void saveTextOrder(selectedProduct?.name as string, selectedFont?.selectedFont.name as string, finalPrice, localStorage.getItem("userMail") as string, setIsOpen)
+                        }
+                        if(service === "obrázek") {
+                            void savePictureOrder(selectedProduct?.name as string, selectedPicture as SelectedPicture, finalPrice, localStorage.getItem("userMail") as string, setIsOpen)
                         }
                     }}>
                         <label htmlFor="email" className="text-2xl text-center tracking-tight text-white">
@@ -107,6 +156,7 @@ const Finalize: NextPage = () => {
                     </svg>
                 </button>
             </div>
+            <MyModal isOpen={isOpen} setIsOpen={setIsOpen} /> 
         </>
     );
 };

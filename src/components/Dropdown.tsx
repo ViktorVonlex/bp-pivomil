@@ -3,7 +3,7 @@ import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 type Props = {
-    items: Item[],
+    items: Item[]
     selected: Item,
     setSelected: Dispatch<SetStateAction<Item | undefined>>
 } 
@@ -11,7 +11,8 @@ type Props = {
 type Item = {
     id: number,
     name: string,
-    price? : number
+    price? : number,
+    url? : string
 }
 
 const Dropdown = ({items, selected, setSelected}: Props) => {
@@ -21,7 +22,7 @@ const Dropdown = ({items, selected, setSelected}: Props) => {
     const filteredItems =
     query === ''
       ? items
-      : items.filter((item) =>
+      : items.filter((item: { name: string }) =>
           item.name
             .toLowerCase()
             .replace(/\s+/g, '')
@@ -55,7 +56,7 @@ const Dropdown = ({items, selected, setSelected}: Props) => {
                 <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {filteredItems.length === 0 && query !== '' ? (
                     <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
-                    Nothing found.
+                    Nenalezeno.
                     </div>
                 ) : (
                     filteredItems.map((item) => (

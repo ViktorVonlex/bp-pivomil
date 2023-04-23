@@ -27,7 +27,7 @@ const Glass: NextPage<Props> = ({ res }) => {
 
   return (
     <>
-    <div className="bg-[#AB77AE] w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex container flex-col items-center justify-center gap-10">
+    <div className="bg-[#AB77AE] outline outline-pink-200 w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex container flex-col items-center justify-center gap-10">
       <h2 className="pageHeader mb-[-1.5rem] sm:text-5xl">
         Vyberte pískované sklo
       </h2>
@@ -60,7 +60,7 @@ const Glass: NextPage<Props> = ({ res }) => {
           </div>
         </div>
       </div>
-      </div>
+    </div>
       <div className="inline-flex">
         <button onClick={() => history.back()} className="bg-gray-300 hover:bg-gray-400 text-gray-800 w-16 h-16 font-bold py-2 px-4 rounded-l">
           Zpět
@@ -83,7 +83,9 @@ export default Glass;
 
 export function getStaticPaths() {
   return {
-    paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }, { params: { glassType: 'džbán' } }, { params: { glassType: 'karafa' } }, { params: { glassType: 'lahev' } }, { params: { glassType: 'sklenice' } }],
+    paths: [{ params: { glassType: 'třetinka' } }, { params: { glassType: 'půllitr' } }, 
+    { params: { glassType: 'džbán' } }, { params: { glassType: 'karafa' } }, 
+    { params: { glassType: 'lahev' } }, { params: { glassType: 'sklenice' } }],
     fallback: false, // can also be true or 'blocking'
   }
 }
@@ -101,10 +103,9 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
       }
     });
 
-    console.log(selectedTypeProducts)
     res = selectedTypeProducts
   } catch (err) {
-    console.log("yikes")
+    console.log("Something went wrong")
   }
 
   return {

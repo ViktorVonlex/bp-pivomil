@@ -20,7 +20,8 @@ const server = z.object({
     process.env.VERCEL ? z.string().min(1) : z.string().url(),
   ),
   ADMIN_ID: z.string().min(1),
-  ADMIN_PS: z.string().min(1)
+  ADMIN_PS: z.string().min(1),
+  SALT: z.string()
 });
 
 /**
@@ -43,7 +44,8 @@ const processEnv = {
   NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   ADMIN_ID: process.env.ADMIN_ID,
-  ADMIN_PS: process.env.ADMIN_PS
+  ADMIN_PS: process.env.ADMIN_PS,
+  SALT: process.env.SALT
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 

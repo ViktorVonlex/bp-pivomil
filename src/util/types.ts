@@ -12,7 +12,14 @@ export type SelectedFont = {
     price: number
 }
 
+export type SelectedPicture = {
+    picture: string,
+    size: string,
+    price: number
+}
+
 export type Order = {
+    id?: number
     service: string,
     product: string,
     font?: string,
@@ -21,4 +28,17 @@ export type Order = {
     size?: string,
     mail: string,
     price: number
+}
+
+export type Picture = {
+    id: number,
+    name: string
+    url: string
+}
+
+export type Size = {
+    id: number,
+    name: string,
+    price: number,
+    priceWoVat: number
 }

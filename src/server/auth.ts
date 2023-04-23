@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type GetServerSidePropsContext } from "next";
 import {
   getServerSession,
@@ -7,6 +6,7 @@ import {
 } from "next-auth";
 import { env } from "~/env.mjs";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcrypt";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -51,25 +51,18 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       type: "credentials",
-      credentials: {
-        username: {
-          label: "Username",
-          type: "text",
-          placeholder: "jsmith",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-        }
-      },
+      credentials: {},
 
-      authorize(credentials, req) {
+      async authorize(credentials, req) {
         const { username, password } = credentials as {
           username: string;
           password: string;
         };
         
-        if (env.ADMIN_ID !== username || env.ADMIN_PS !== password) {
+        const salt = env.SALT
+        const pass = await bcrypt.hash(password, salt)
+
+        if (env.ADMIN_ID !== username || pass !== env.ADMIN_PS) {
           throw new Error("invalid credentials");
         }
         // if everything is fine

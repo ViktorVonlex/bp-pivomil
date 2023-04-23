@@ -51,7 +51,7 @@ const Text: NextPage = () => {
 
     return (
         <>
-        <div className="bg-[#AB77AE] w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex h-80 container flex-col items-center">
+        <div className="bg-[#AB77AE]  outline outline-pink-200 w-11/12 sm:w-auto md:p-7 p-6 rounded-lg flex h-80 container flex-col items-center">
             <div className="flex-row">
 
                 <h2 className="pageHeader text-center sm:text-5xl sm:mb-3 mx-auto">
@@ -82,7 +82,7 @@ const Text: NextPage = () => {
                     Předpokládaná cena pískování: {price} Kč
                 </p>
             }
-            </div>
+        </div>
             {wordCounter > 0 
             ?
             <div className="inline-flex">
